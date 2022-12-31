@@ -1,28 +1,21 @@
 import React, { FC } from 'react';
+import { ConfigProvider } from 'antd';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './features/home/App';
-import Home from './features/home/Home';
+import zhCN from 'antd/es/locale/zh_CN';
+import 'moment/locale/zh-cn';
 import { store } from './common/store';
+import routes from './common/routes';
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <App />,
-        children: [
-            {
-                path: 'contacts/:contactId',
-                element: <Home />,
-            },
-        ],
-    },
-]);
+const router = createBrowserRouter(routes);
 
 const Root: FC = () => {
     return (
-        <Provider store={store}>
-            <RouterProvider router={router} />
-        </Provider>
+        <ConfigProvider locale={zhCN}>
+            <Provider store={store}>
+                <RouterProvider router={router} />
+            </Provider>
+        </ConfigProvider>
     );
 };
 

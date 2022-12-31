@@ -1,19 +1,14 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { ConfigProvider } from 'antd';
 import Root from './Root';
 import reportWebVitals from './reportWebVitals';
-import zhCN from 'antd/es/locale/zh_CN';
-import 'moment/locale/zh-cn';
 import './styles/index.scss';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
 root.render(
     <React.StrictMode>
-        <ConfigProvider locale={zhCN}>
-            <Root />
-        </ConfigProvider>
+        <Root />
     </React.StrictMode>,
 );
 
