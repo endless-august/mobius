@@ -1,17 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
+import { ConfigProvider } from 'antd';
 import Root from './Root';
 import reportWebVitals from './reportWebVitals';
-import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import 'moment/locale/zh-cn';
 import './styles/index.scss';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const container = document.getElementById('root') as HTMLElement;
+const root = createRoot(container);
 root.render(
-    <ConfigProvider locale={zhCN}>
-        <Root />
-    </ConfigProvider>,
+    <React.StrictMode>
+        <ConfigProvider locale={zhCN}>
+            <Root />
+        </ConfigProvider>
+    </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

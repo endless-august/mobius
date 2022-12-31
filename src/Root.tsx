@@ -1,12 +1,29 @@
 import React, { FC } from 'react';
-import { DatePicker } from 'antd';
+import { Provider } from 'react-redux';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './features/home/App';
+import Home from './features/home/Home';
+import { store } from './common/store';
 
-const App: FC = () => {
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <App />,
+        children: [
+            {
+                path: 'contacts/:contactId',
+                element: <Home />,
+            },
+        ],
+    },
+]);
+
+const Root: FC = () => {
     return (
-        <div className='App'>
-            <DatePicker.TimePicker />
-        </div>
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
     );
 };
 
-export default App;
+export default Root;
