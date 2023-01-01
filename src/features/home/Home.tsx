@@ -3,7 +3,7 @@ import { Outlet, Link } from 'react-router-dom';
 export const Home: FC = () => {
     return (
         <>
-            <div id='sidebar'>
+            <div id='sidebar' style={{ backgroundColor: '#093892' }}>
                 <h1>React Router Contacts</h1>
                 <div>
                     <form id='search-form' role='search'>

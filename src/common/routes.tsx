@@ -1,16 +1,15 @@
-import { Home } from '@/features/home/Home';
-import { Contract } from '@/features/home/Contract';
+import { RouteObject } from 'react-router-dom';
+import { App } from '@/features/common/App';
+import { PageNotFound } from '@/features/common/PageNotFound';
+import homeRoute from '@/features/home/route';
+import loginRoute from '@/features/login/route';
 
-const routes = [
+const routes: RouteObject[] = [
     {
         path: '/',
-        element: <Home />,
-        children: [
-            {
-                path: 'contacts/:contactId',
-                element: <Contract />,
-            },
-        ],
+        element: <App />,
+        errorElement: <PageNotFound />,
+        children: [loginRoute, homeRoute],
     },
 ];
 export default routes;
