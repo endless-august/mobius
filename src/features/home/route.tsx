@@ -1,8 +1,8 @@
-import { RouteObject } from 'react-router-dom';
+import { MobRoute } from '@/common/routes';
 import { Home } from './Home';
 import menus from './menus';
 
-const route: RouteObject = {
+const route: MobRoute = {
     path: '/',
     element: <Home />,
     children: [...menus],

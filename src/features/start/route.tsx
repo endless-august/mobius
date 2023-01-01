@@ -1,7 +1,7 @@
-import { RouteObject } from 'react-router-dom';
+import { MobRoute } from '@/common/routes';
 import { Start } from './Start';
 
-const route: RouteObject[] = [
+const route: MobRoute[] = [
     {
         path: 'start',
         element: <Start />,

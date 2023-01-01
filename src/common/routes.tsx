@@ -4,7 +4,11 @@ import { PageNotFound } from '@/features/common/PageNotFound';
 import homeRoute from '@/features/home/route';
 import loginRoute from '@/features/login/route';
 
-const routes: RouteObject[] = [
+export declare type MobRoute = RouteObject & {
+    name?: string;
+};
+
+const routes: MobRoute[] = [
     {
         path: '/',
         element: <App />,

@@ -1,7 +1,7 @@
-import { RouteObject } from 'react-router-dom';
+import { MobRoute } from '@/common/routes';
 import { Settings } from './Settings';
 
-const route: RouteObject[] = [
+const route: MobRoute[] = [
     {
         path: 'settings',
         element: <Settings />,
