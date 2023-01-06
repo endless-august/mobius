@@ -6,7 +6,9 @@ import zhCN from 'antd/es/locale/zh_CN';
 import 'moment/locale/zh-cn';
 import { store } from './common/store';
 import routes from './common/routes';
+import { setLocale } from './common/i18n';
 
+setLocale('zhCN');
 const router = createBrowserRouter(routes);
 
 const Root: FC = () => {

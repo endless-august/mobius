@@ -6,6 +6,10 @@ import loginRoute from '@/features/login/route';
 
 export declare type MobRoute = RouteObject & {
     name?: string;
+    icon?: string;
+    isDir?: boolean;
+    submenus?: MobRoute[];
+    hidden?: boolean;
 };
 
 const routes: MobRoute[] = [

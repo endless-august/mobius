@@ -1,10 +1,10 @@
 import { MobRoute } from '@/common/routes';
 import { Home } from './Home';
-import menus from './menus';
+import { pages } from '../menu/menus';
 
 const route: MobRoute = {
     path: '/',
     element: <Home />,
-    children: [...menus],
+    children: [...pages],
 };
 export default route;

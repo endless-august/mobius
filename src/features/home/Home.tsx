@@ -1,34 +1,43 @@
 import { FC } from 'react';
 import { Outlet, Link } from 'react-router-dom';
+import { Layout } from 'antd';
+import { isMobileEnv } from '@/common/utils';
+// import { default as HomeHeader } from './Header';
+import { HomeSider } from './HomeSider';
+
+const { Header, Content, Sider } = Layout;
+
 export const Home: FC = () => {
     return (
-        <>
-            <div id='sidebar' style={{ backgroundColor: '#093892' }}>
-                <h1>React Router Contacts</h1>
-                <div>
-                    <form id='search-form' role='search'>
-                        <input id='q' aria-label='Search contacts' placeholder='Search' type='search' name='q' />
-                        <div id='search-spinner' aria-hidden hidden={true} />
-                        <div className='sr-only' aria-live='polite' />
-                    </form>
-                    <form method='post'>
-                        <button type='submit'>New</button>
-                    </form>
-                </div>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to={`contacts/1`}>Your Name</Link>
-                        </li>
-                        <li>
-                            <Link to={`contacts/2`}>Your Friend</Link>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div id='detail'>
-                <Outlet />
-            </div>
-        </>
+        <div className='home-index'>
+            <Layout style={isMobileEnv() ? { width: '1334px' } : { height: '100vh' }}>
+                {/* <Header className='home-index__header'> */}
+                {/* <HomeHeader */}
+                {/* // computedMatch={computedMatch} pathname={pathname} */}
+                {/* /> */}
+                {/* </Header> */}
+                <Layout>
+                    <Sider
+                        className='home-index__sider'
+                        width={260}
+                        trigger={null}
+                        collapsible
+                        // collapsed={this.props.collapsed}
+                    >
+                        <HomeSider
+                        // computedMatch={computedMatch}
+                        />
+                    </Sider>
+                    <Layout>
+                        <Content
+                            className='home-index__content'
+                            // ref={this.nodeRef}
+                        >
+                            {/* <HomeContent computedMatch={computedMatch} computedChild={computedChild} pathname={pathname} /> */}
+                        </Content>
+                    </Layout>
+                </Layout>
+            </Layout>
+        </div>
     );
 };
