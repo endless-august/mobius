@@ -5,6 +5,7 @@ import homeRoute from '@/features/home/route';
 import loginRoute from '@/features/login/route';
 
 export declare type MobRoute = RouteObject & {
+    key: string;
     name?: string;
     icon?: string;
     isDir?: boolean;
@@ -14,6 +15,7 @@ export declare type MobRoute = RouteObject & {
 
 const routes: MobRoute[] = [
     {
+        key: 'root',
         path: '/',
         element: <App />,
         errorElement: <PageNotFound />,

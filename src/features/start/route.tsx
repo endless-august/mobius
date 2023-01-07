@@ -3,6 +3,7 @@ import { Start } from './Start';
 
 const route: MobRoute[] = [
     {
+        key: 'menu/start',
         path: 'start',
         name: 'menu.start',
         icon: 'home',

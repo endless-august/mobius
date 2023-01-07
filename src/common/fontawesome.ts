@@ -1,20 +1,20 @@
 // '@fortawesome/fontawesome-free-solid';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import _ from 'lodash';
+import { chain, filter, isString, size, map, cloneDeep } from 'lodash';
 
 const solidIcons = require('@fortawesome/free-solid-svg-icons');
-const definitions = _.chain(solidIcons)
+const definitions = chain(solidIcons)
     .filter(x => x.icon)
     .unionBy(x => x.iconName)
     .map(x => {
         const [, , ligatures] = x.icon;
-        const others = _.filter(ligatures, ligature => _.isString(ligature) && ligature.length > 0);
-        if (_.size(others) > 0) {
+        const others = filter(ligatures, ligature => isString(ligature) && ligature.length > 0);
+        if (size(others) > 0) {
             // console.log(x.iconName, others);
             return [
                 x,
-                ..._.map(others, other => {
-                    const newX = _.cloneDeep(x);
+                ...map(others, other => {
+                    const newX = cloneDeep(x);
                     newX.iconName = other;
                     return newX;
                 }),
@@ -25,5 +25,3 @@ const definitions = _.chain(solidIcons)
     .flatten()
     .value();
 library.add(...definitions);
-
-export default {};

@@ -3,11 +3,13 @@ import { Settings } from './Settings';
 
 const route: MobRoute[] = [
     {
+        key: 'menu/settings/dir',
         name: 'menu.settings.dir',
         icon: 'fa-gear',
         isDir: true,
         submenus: [
             {
+                key: 'menu/settings/basic',
                 path: 'settings',
                 name: 'menu.settings.basic',
                 element: <Settings />,

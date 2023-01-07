@@ -11,7 +11,7 @@ const __ = (key: string | undefined) => {
     const keys = key.split('.');
     let value: any = currentLocale;
     for (const k of keys) {
-        value = value[k];
+        value = value[k] ?? [];
     }
     return value;
 };

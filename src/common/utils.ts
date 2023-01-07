@@ -56,7 +56,4 @@ export const setSessionValue = (field: string, key: string, value: any) => {
     }
 };
 
-export function isMobileEnv() {
-    var n = !!window.navigator.appVersion.match(/AppleWebKit.*Mobile.*/);
-    return n;
-}
+export const isMobileEnv = (): boolean => !!window.navigator.appVersion.match(/AppleWebKit.*Mobile.*/);
