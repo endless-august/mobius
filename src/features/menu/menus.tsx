@@ -11,5 +11,8 @@ const pageReducer = (previousValue: MobRoute[], currentValue: MobRoute): MobRout
 };
 
 const pages = menus.reduce(pageReducer, []);
+const pagesByKey = {} as { [key: string]: MobRoute };
+pages.forEach(x => (pagesByKey[x.key] = x));
+const getPageByKey = (key: string): MobRoute => pagesByKey[key];
 
-export { pages, menus };
+export { pages, menus, pagesByKey, getPageByKey };

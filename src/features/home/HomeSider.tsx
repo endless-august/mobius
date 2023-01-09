@@ -1,12 +1,15 @@
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { MobRoute } from '@/common/routes';
 import { size } from 'lodash';
 import '@/common/fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { menus } from '@/features/menu/menus';
+import { menus, getPageByKey } from '@/features/menu/menus';
 import { __ } from '@/common/i18n';
+import { useNavigate } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '@/common/hooks/useRedux';
+import { navigateTo, selectNavi } from './redux/navi';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -33,9 +36,28 @@ const menuDir = (data: MobRoute): MenuItem => {
 };
 
 export const HomeSider: FC = () => {
+    const navi = useAppSelector(selectNavi);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const onClick: MenuProps['onClick'] = ({ key }) => {
+        const page = getPageByKey(key);
+        const { path, name } = page;
+        if (path) {
+            if (!navi.active || navi.active.key !== key) {
+                navigate(path);
+                dispatch(navigateTo({ key, path, name: name ?? '' }));
+            }
+        }
+    };
+
+    const [selectedKeys, setSelectedKeys] = useState(navi.active?.key ? [navi.active.key] : []);
+    useEffect(() => {
+        console.log(navi);
+        setSelectedKeys(navi.active?.key ? [navi.active.key] : []);
+    }, [navi]);
     return (
         <>
-            <Menu theme='dark' mode='inline' items={menus.map(x => menuDir(x))} />
+            <Menu theme='dark' mode='inline' items={menus.map(x => menuDir(x))} onClick={onClick} selectedKeys={selectedKeys} />
         </>
     );
 };

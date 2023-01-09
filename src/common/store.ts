@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import naviReducer from '@/features/home/redux/navi';
 
 export const store = configureStore({
-    reducer: {},
+    reducer: {
+        navi: naviReducer,
+    },
 });
 
 export type AppDispatch = typeof store.dispatch;

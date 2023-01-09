@@ -10,7 +10,7 @@ const route: MobRoute[] = [
         submenus: [
             {
                 key: 'menu/settings/basic',
-                path: 'settings',
+                path: 'settings/basic',
                 name: 'menu.settings.basic',
                 element: <Settings />,
             },

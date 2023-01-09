@@ -1,11 +1,15 @@
 import { FC } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
 import { isMobileEnv } from '@/common/utils';
 // import { default as HomeHeader } from './Header';
 import { HomeSider } from './HomeSider';
 
-const { Header, Content, Sider } = Layout;
+const {
+    // Header,
+    Content,
+    Sider,
+} = Layout;
 
 export const Home: FC = () => {
     return (
@@ -34,6 +38,7 @@ export const Home: FC = () => {
                             // ref={this.nodeRef}
                         >
                             {/* <HomeContent computedMatch={computedMatch} computedChild={computedChild} pathname={pathname} /> */}
+                            <Outlet />
                         </Content>
                     </Layout>
                 </Layout>
