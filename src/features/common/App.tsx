@@ -1,9 +1,21 @@
-import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
+import { FC, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { startPagePath } from '@/features/start/route';
+
 export const App: FC = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (location.pathname === '/') {
+            // redirect to start page when accessing the root path
+            navigate(startPagePath);
+        }
+    }, [location, navigate]);
     return (
-        <div className='home-app'>
+        <>
             <Outlet />
-        </div>
+        </>
     );
 };

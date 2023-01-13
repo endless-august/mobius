@@ -1,29 +1,39 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
-import { isMobileEnv } from '@/common/utils';
 import { Header } from './Header';
 import { SiderBar } from './SiderBar';
-import { useAppSelector } from '@/common/hooks/useRedux';
-import { selectCollapsed } from './redux/navi';
+import { useAppSelector, useAppDispatch } from '@/common/hooks/useRedux';
+import { useLocation } from 'react-router-dom';
+import { selectCollapsed, navigateTo } from './redux/navi';
+import { getPageByPath } from '@/features/menu/menus';
 
 export const Home: FC = () => {
+    const location = useLocation();
+    const dispatch = useAppDispatch();
     const collapsed = useAppSelector(selectCollapsed);
+
+    useEffect(() => {
+        const pathname = location.pathname.substring(1);
+        const page = getPageByPath(pathname);
+        if (page && page.path) {
+            // sync navigation when location changed
+            dispatch(navigateTo(page.key));
+        }
+    }, [location, dispatch]);
+
     return (
         <div className='home-index'>
-            <Layout style={isMobileEnv() ? { width: '1334px' } : { height: '100vh' }}>
-                <Layout.Header className='home-index__header' style={{ padding: 0 }}>
-                    <Header />
-                </Layout.Header>
+            <Layout style={{ height: '100vh' }}>
+                <Layout.Sider className='home-index__sider' width={220} trigger={null} collapsible collapsed={collapsed}>
+                    <SiderBar />
+                </Layout.Sider>
                 <Layout>
-                    <Layout.Sider className='home-index__sider' width={260} trigger={null} collapsible collapsed={collapsed}>
-                        <SiderBar />
-                    </Layout.Sider>
+                    <Layout.Header className='home-index__header' style={{ padding: 0, backgroundColor: '#FFF' }}>
+                        <Header />
+                    </Layout.Header>
                     <Layout>
-                        <Layout.Content
-                            className='home-index__content'
-                            // ref={this.nodeRef}
-                        >
+                        <Layout.Content className='home-index__content'>
                             {/* <HomeContent computedMatch={computedMatch} computedChild={computedChild} pathname={pathname} /> */}
                             <Outlet />
                         </Layout.Content>

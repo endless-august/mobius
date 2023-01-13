@@ -5,12 +5,13 @@ import homeRoute from '@/features/home/route';
 import loginRoute from '@/features/login/route';
 
 export declare type MobRoute = RouteObject & {
-    key: string;
-    name?: string;
-    icon?: string;
-    isDir?: boolean;
-    submenus?: MobRoute[];
-    hidden?: boolean;
+    key: string; // unique key
+    name?: string; // name for display
+    icon?: string; // icon for display
+    isDir?: boolean; // whether it is a directory
+    submenus?: MobRoute[]; // only directory has submenus
+    hidden?: boolean; // whether it is hidden
+    parent?: MobRoute; // parent route
 };
 
 const routes: MobRoute[] = [

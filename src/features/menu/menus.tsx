@@ -6,13 +6,21 @@ import { default as settingsRoute } from '../settings/route';
 const menus: MobRoute[] = [...startRoute, ...searchRoute, ...settingsRoute];
 
 const pageReducer = (previousValue: MobRoute[], currentValue: MobRoute): MobRoute[] => {
-    if (currentValue.isDir) return previousValue.concat(currentValue.submenus?.reduce(pageReducer, []) ?? []);
-    else return previousValue.concat([currentValue]);
+    if (currentValue.isDir) {
+        const submenus = currentValue.submenus?.reduce(pageReducer, []) ?? [];
+        submenus.forEach(x => (x.parent = currentValue));
+        return previousValue.concat(submenus);
+    } else return previousValue.concat([currentValue]);
 };
 
 const pages = menus.reduce(pageReducer, []);
 const pagesByKey = {} as { [key: string]: MobRoute };
-pages.forEach(x => (pagesByKey[x.key] = x));
+const pagesByPath = {} as { [path: string]: MobRoute };
+pages.forEach(x => {
+    pagesByKey[x.key] = x;
+    if (x.path) pagesByPath[x.path] = x;
+});
 const getPageByKey = (key: string): MobRoute => pagesByKey[key];
+const getPageByPath = (path: string): MobRoute => pagesByPath[path];
 
-export { pages, menus, pagesByKey, getPageByKey };
+export { pages, menus, pagesByKey, getPageByKey, getPageByPath };

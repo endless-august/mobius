@@ -1,27 +1,16 @@
 @import '../../styles/mixins';
 
 .home-index {
-    &__sider {
-        // overflow: hidden;
-        overflow-x: visible;
-        z-index: 1;
-        // overflow-y: hidden;
+    // &__sider {
+    // overflow: hidden;
+    // overflow-x: visible;
+    // z-index: 1;
+    // overflow-y: hidden;
+    // }
 
-        &-title {
-            background: #002140;
-            font-size: 24px;
-            color: #fff;
-            white-space: nowrap;
-            width: 260px;
-            height: 64px;
-            line-height: 64px;
-            padding-left: 40px;
-        }
-    }
-
-    &__header {
-        padding: 0;
-    }
+    // &__header {
+    //     padding: 0;
+    // }
 
     &__content {
         position: relative;

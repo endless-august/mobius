@@ -1,0 +1,43 @@
+@import '../../styles/mixins';
+
+.home-sider {
+    @include hideScrollbar();
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @include textNoSelect();
+
+    &__title {
+        flex: none;
+        width: 220px;
+        height: 60px;
+        font-size: 24px;
+        color: #fff;
+        white-space: nowrap;
+        background: $dark-light;
+        text-align: center;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transition: width 0.2s;
+
+        &.title-collapsed {
+            width: 80px;
+        }
+    }
+
+    &__trigger {
+        flex: none;
+        height: 32px;
+        line-height: 32px;
+        color: #fff;
+        background-color: #002140;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: center;
+    }
+}

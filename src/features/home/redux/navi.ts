@@ -1,11 +1,17 @@
 import { find } from 'lodash';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '@/common/store';
+import { getSessionValue, setSessionValue } from '@/common/utils';
+import { getPageByKey, getPageByPath } from '@/features/menu/menus';
+import { MobRoute } from '@/common/routes';
+import { startPagePath } from '@/features/start/route';
 
 export interface NaviItem {
     key: string;
     name: string;
     path: string;
+    icon?: string;
+    parentKey?: string;
 }
 
 export interface NaviState {
@@ -14,25 +20,40 @@ export interface NaviState {
     collapsed: boolean;
 }
 
+const pageToItem = (page: MobRoute): NaviItem => {
+    const { key, name, path, icon, parent } = page;
+    return { key, name: name ?? '', path: path ?? '', icon, parentKey: parent?.key };
+};
+
+const defaultPage = pageToItem(getPageByPath(startPagePath));
 const initialState: NaviState = {
-    list: [],
+    list: getSessionValue('navi', 'list', [defaultPage]),
     active: undefined,
-    collapsed: false,
+    collapsed: getSessionValue('navi', 'collapsed', true),
+};
+
+const saveNavi = (navi: NaviState) => {
+    setSessionValue('navi', 'list', navi.list);
+    setSessionValue('navi', 'collapsed', navi.collapsed);
 };
 
 export const naviSlice = createSlice({
     name: 'navi',
     initialState,
     reducers: {
-        initNaviList: (state, action: PayloadAction<NaviItem>) => {},
-        navigateTo: (state, action: PayloadAction<NaviItem>) => {
-            if (state.active && state.active.key === action.payload.key) return;
-            const page = find(state.list, o => o.key === action.payload.key);
-            if (!page) state.list.push(action.payload);
-            state.active = action.payload;
+        navigateTo: (state, action: PayloadAction<string>) => {
+            const page = getPageByKey(action.payload);
+            if (!page) return;
+            if (state.active && state.active.key === page.key) return;
+
+            state.active = pageToItem(page);
+            const item = find(state.list, o => o.key === page.key);
+            if (!item) state.list.push(state.active);
+            saveNavi(state);
         },
         collapseSider: state => {
             state.collapsed = !state.collapsed;
+            saveNavi(state);
         },
     },
 });

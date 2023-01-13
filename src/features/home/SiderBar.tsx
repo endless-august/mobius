@@ -1,16 +1,17 @@
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { FC } from 'react';
+import classnames from 'classnames';
+import { FC, useEffect, useState } from 'react';
 import { MobRoute } from '@/common/routes';
-import { size } from 'lodash';
+import { size, isUndefined } from 'lodash';
 import '@/common/fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { menus, getPageByKey } from '@/features/menu/menus';
 import { __ } from '@/common/i18n';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/common/hooks/useRedux';
-import { selectCollapsed, selectActive, navigateTo, collapseSider } from './redux/navi';
+import { selectCollapsed, selectActive, collapseSider } from './redux/navi';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -21,15 +22,20 @@ export const SiderBar: FC = () => {
     const navigate = useNavigate();
     const onClick: MenuProps['onClick'] = ({ key }) => {
         const page = getPageByKey(key);
-        const { path, name } = page;
-        if (path) {
+        if (page && page.path) {
             if (!active || active.key !== key) {
-                navigate(path);
-                dispatch(navigateTo({ key, path, name: name ?? '' }));
+                navigate(page.path);
             }
         }
     };
     const selectedKeys = active?.key ? [active.key] : [];
+    const [openKeys, setOpenKeys] = useState<string[] | undefined>(undefined);
+    useEffect(() => {
+        if (isUndefined(openKeys) && active && active.parentKey) {
+            // init openKeys only for the first time
+            setOpenKeys([active.parentKey]);
+        }
+    }, [active, openKeys]);
 
     const iconStyle = {}; //{ minWidth: 14, fontSize: 14, marginRight: 10 };
     const menuItem = (data: MobRoute): MenuItem => {
@@ -57,7 +63,8 @@ export const SiderBar: FC = () => {
 
     return (
         <div className='home-sider'>
-            <div className='home-sider-trigger' onClick={() => dispatch(collapseSider())}>
+            <div className={classnames('home-sider__title', { 'title-collapsed': collapsed })}>{collapsed ? 'M' : 'Mobius'}</div>
+            <div className='home-sider__trigger' onClick={() => dispatch(collapseSider())}>
                 {collapsed ? <RightOutlined /> : <LeftOutlined />}
             </div>
             <Menu
@@ -67,6 +74,8 @@ export const SiderBar: FC = () => {
                 items={menus.map(x => menuDir(x))}
                 onClick={onClick}
                 selectedKeys={selectedKeys}
+                openKeys={collapsed ? undefined : openKeys}
+                onOpenChange={collapsed ? undefined : keys => setOpenKeys(keys)}
             />
         </div>
     );
