@@ -1,4 +1,4 @@
-import { find } from 'lodash';
+import { find, findIndex, last } from 'lodash';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '@/common/store';
 import { getSessionValue, setSessionValue } from '@/common/utils';
@@ -51,6 +51,11 @@ export const naviSlice = createSlice({
             if (!item) state.list.push(state.active);
             saveNavi(state);
         },
+        closeTab: state => {
+            if (!state.active || state.list.length < 1) return;
+            state.list = state.list.filter(o => o.key !== state.active?.key);
+            state.active = undefined;
+        },
         collapseSider: state => {
             state.collapsed = !state.collapsed;
             saveNavi(state);
@@ -58,10 +63,21 @@ export const naviSlice = createSlice({
     },
 });
 
-export const { navigateTo, collapseSider } = naviSlice.actions;
+export const { navigateTo, closeTab, collapseSider } = naviSlice.actions;
 export const selectNavi = (state: RootState) => state.navi;
 export const selectActive = (state: RootState) => state.navi.active;
 export const selectNaviList = (state: RootState) => state.navi.list;
 export const selectCollapsed = (state: RootState) => state.navi.collapsed;
+export const selectNextTab = (state: RootState) => {
+    const { list, active } = state.navi;
+    if (!active) return last(list);
+    const index = findIndex(list, o => o.key === active.key);
+    if (index < 0) return last(list);
+    if (index === list.length - 1) {
+        if (list.length > 1) return list[index - 1];
+        else return defaultPage;
+    }
+    return list[index + 1];
+};
 
 export default naviSlice.reducer;

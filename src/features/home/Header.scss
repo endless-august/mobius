@@ -10,10 +10,18 @@
         overflow: hidden;
         display: flex;
 
-        &-menu {
+        &-tabs {
             line-height: 64px;
             flex: 1;
             overflow: hidden;
+
+            .ant-tabs .ant-tabs-nav .ant-tabs-nav-wrap {
+                flex: none;
+            }
+
+            &-button {
+                color: gray;
+            }
         }
     }
 }

@@ -7,4 +7,10 @@ export const enUS = {
             basic: 'Basic',
         },
     },
+    navi: {
+        tabs: {
+            close: 'Close Tab',
+            reload: 'Reload Tab',
+        },
+    },
 };

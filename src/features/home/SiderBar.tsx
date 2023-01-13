@@ -20,7 +20,7 @@ export const SiderBar: FC = () => {
     const collapsed = useAppSelector(selectCollapsed);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const onClick: MenuProps['onClick'] = ({ key }) => {
+    const openPage: MenuProps['onClick'] = ({ key }) => {
         const page = getPageByKey(key);
         if (page && page.path) {
             if (!active || active.key !== key) {
@@ -72,7 +72,7 @@ export const SiderBar: FC = () => {
                 mode='inline'
                 style={{ flex: 1, borderRight: 0, overflow: 'hidden auto' }}
                 items={menus.map(x => menuDir(x))}
-                onClick={onClick}
+                onClick={openPage}
                 selectedKeys={selectedKeys}
                 openKeys={collapsed ? undefined : openKeys}
                 onOpenChange={collapsed ? undefined : keys => setOpenKeys(keys)}

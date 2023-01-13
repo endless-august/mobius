@@ -7,4 +7,10 @@ export const zhCN = {
             basic: '基础设置',
         },
     },
+    navi: {
+        tabs: {
+            close: '关闭',
+            reload: '刷新',
+        },
+    },
 };
