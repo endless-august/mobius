@@ -1,7 +1,6 @@
 import { FC, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
-import { Header } from './Header';
+import { TabBar } from './TabBar';
 import { SiderBar } from './SiderBar';
 import { useAppSelector, useAppDispatch } from '@/common/hooks/useRedux';
 import { useLocation } from 'react-router-dom';
@@ -28,16 +27,8 @@ export const Home: FC = () => {
                 <Layout.Sider className='home-index__sider' width={220} trigger={null} collapsible collapsed={collapsed}>
                     <SiderBar />
                 </Layout.Sider>
-                <Layout>
-                    <Layout.Header className='home-index__header' style={{ padding: 0, backgroundColor: '#FFF' }}>
-                        <Header />
-                    </Layout.Header>
-                    <Layout>
-                        <Layout.Content className='home-index__content'>
-                            {/* <HomeContent computedMatch={computedMatch} computedChild={computedChild} pathname={pathname} /> */}
-                            <Outlet />
-                        </Layout.Content>
-                    </Layout>
+                <Layout className='home-index__tabbar'>
+                    <TabBar />
                 </Layout>
             </Layout>
         </div>

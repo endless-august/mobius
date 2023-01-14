@@ -1,0 +1,47 @@
+$tabPadding: 15px;
+.home-tabbar {
+    height: 100%;
+    background-color: white;
+
+    @include textNoSelect();
+
+    &__extra {
+        display: flex;
+        flex: auto;
+        &-button {
+            color: gray;
+        }
+
+        &-toolbar {
+            display: flex;
+            flex: auto;
+            flex-direction: row-reverse;
+
+            &-user {
+                color: gray;
+            }
+        }
+    }
+
+    .ant-tabs {
+        height: 100%;
+        .ant-tabs-nav {
+            padding: $tabPadding $tabPadding 0 $tabPadding;
+            margin: 0;
+            background-color: white;
+
+            .ant-tabs-nav-wrap {
+                flex: none;
+            }
+
+            .ant-tabs-extra-content {
+                display: flex;
+                flex: auto;
+            }
+        }
+        .ant-tabs-content-holder {
+            padding: $tabPadding;
+            background-color: white;
+        }
+    }
+}

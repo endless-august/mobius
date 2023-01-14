@@ -3,16 +3,12 @@ import { Tabs, TabsProps, Button, Space, Tooltip, ButtonProps } from 'antd';
 import { getPageByKey } from '@/features/menu/menus';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CloseOutlined, ReloadOutlined } from '@ant-design/icons';
+import { CloseOutlined, ReloadOutlined, UserOutlined } from '@ant-design/icons';
 import { useAppSelector, useAppDispatch } from '@/common/hooks/useRedux';
 import { selectNaviList, selectActive, selectNextTab, closeTab } from './redux/navi';
 import { __ } from '@/common/i18n';
 
-interface PropsType {
-    className: string;
-}
-
-export const NaviBar: FC<PropsType> = ({ className }) => {
+export const TabBar: FC = () => {
     const naviList = useAppSelector(selectNaviList);
     const active = useAppSelector(selectActive);
     const nextTab = useAppSelector(selectNextTab);
@@ -34,10 +30,12 @@ export const NaviBar: FC<PropsType> = ({ className }) => {
     };
 
     const onReloadTab: ButtonProps['onClick'] = () => {};
+    const onUserClick: ButtonProps['onClick'] = () => {};
 
     const activeKey = active?.key ? active.key : '';
     const tabItem = naviList.map(data => {
         const { key, name, icon } = data;
+        const page = getPageByKey(key);
         return {
             key,
             label: (
@@ -47,49 +45,45 @@ export const NaviBar: FC<PropsType> = ({ className }) => {
                 </>
             ),
             closable: false,
+            children: page.element,
         };
     });
 
     const extraButtons = (
-        <Space>
-            <Tooltip title={__('navi.tabs.close')} mouseEnterDelay={1}>
-                <Button
-                    className='home-header__nav-tabs-button'
-                    style={{ marginLeft: '10px' }}
-                    icon={<CloseOutlined />}
-                    type='text'
-                    // size='small'
-                    onClick={onCloseTab}
-                />
-            </Tooltip>
-            <Tooltip title={__('navi.tabs.reload')} mouseEnterDelay={1}>
-                <Button
-                    className='home-header__nav-tabs-button'
-                    icon={<ReloadOutlined />}
-                    type='text'
-                    // size='small'
-                    onClick={onReloadTab}
-                />
-            </Tooltip>
-        </Space>
+        <div className='home-tabbar__extra'>
+            <Space>
+                <Tooltip title={__('navi.tabs.close')} mouseEnterDelay={1}>
+                    <Button
+                        className='home-tabbar__extra-button'
+                        style={{ marginLeft: 10 }}
+                        icon={<CloseOutlined />}
+                        type='text'
+                        onClick={onCloseTab}
+                    />
+                </Tooltip>
+                <Tooltip title={__('navi.tabs.reload')} mouseEnterDelay={1}>
+                    <Button className='home-tabbar__extra-button' icon={<ReloadOutlined />} type='text' onClick={onReloadTab} />
+                </Tooltip>
+            </Space>
+            <div className='home-tabbar__extra-toolbar'>
+                <Button className='home-tabbar__extra-toolbar-user' icon={<UserOutlined />} type='text' onClick={onUserClick} />
+            </div>
+        </div>
     );
 
     return (
-        <div className={className}>
-            <div className='home-header__nav-tabs'>
-                <Tabs
-                    hideAdd
-                    type='card'
-                    style={{ paddingLeft: '15px', paddingTop: '20px' }}
-                    activeKey={activeKey}
-                    animated={true}
-                    tabBarGutter={5}
-                    size='middle'
-                    items={tabItem}
-                    onChange={onChangeTab}
-                    tabBarExtraContent={extraButtons}
-                />
-            </div>
+        <div className='home-tabbar'>
+            <Tabs
+                hideAdd
+                type='card'
+                activeKey={activeKey}
+                animated={true}
+                tabBarGutter={5}
+                size='middle'
+                items={tabItem}
+                onChange={onChangeTab}
+                tabBarExtraContent={extraButtons}
+            />
         </div>
     );
 };

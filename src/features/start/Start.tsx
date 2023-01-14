@@ -1,4 +1,10 @@
+import { Input } from 'antd';
 import { FC } from 'react';
 export const Start: FC = () => {
-    return <>start</>;
+    return (
+        <>
+            start
+            <Input />
+        </>
+    );
 };
