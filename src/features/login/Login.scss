@@ -1,0 +1,27 @@
+@import '../../styles/mixins';
+
+.login-index {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__container {
+        position: relative;
+
+        @include textNoSelect();
+
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 40px 6px rgba(0, 0, 0, 0.13);
+    }
+
+    .login-form {
+        width: 300px;
+
+        .login-form-button {
+            margin-top: 20px;
+            width: 100%;
+        }
+    }
+}

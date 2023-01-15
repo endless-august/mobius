@@ -1,4 +1,7 @@
 export const enUS = {
+    login: {
+        remember_me: 'Keep me logged in',
+    },
     menu: {
         start: 'Start',
         search: 'Search',
