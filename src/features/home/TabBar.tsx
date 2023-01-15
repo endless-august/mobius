@@ -3,15 +3,19 @@ import { Tabs, TabsProps, Button, Space, Tooltip, ButtonProps } from 'antd';
 import { getPageByKey } from '@/features/menu/menus';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CloseOutlined, ReloadOutlined, UserOutlined } from '@ant-design/icons';
+import { CloseOutlined, ReloadOutlined } from '@ant-design/icons';
 import { useAppSelector, useAppDispatch } from '@/common/hooks/useRedux';
+import { useForceUpdate } from '@/common/hooks/useForceUpdate';
 import { selectNaviList, selectActive, selectNextTab, closeTab } from './redux/navi';
 import { __ } from '@/common/i18n';
+import { ToolBar } from './ToolBar';
+import { createContentWrapper } from './ContentWrapper';
 
 export const TabBar: FC = () => {
     const naviList = useAppSelector(selectNaviList);
     const active = useAppSelector(selectActive);
     const nextTab = useAppSelector(selectNextTab);
+    const forceUpdate = useForceUpdate();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const onChangeTab: TabsProps['onChange'] = key => {
@@ -29,8 +33,15 @@ export const TabBar: FC = () => {
         }
     };
 
-    const onReloadTab: ButtonProps['onClick'] = () => {};
-    const onUserClick: ButtonProps['onClick'] = () => {};
+    const onReloadTab: ButtonProps['onClick'] = () => {
+        if (active) {
+            const page = getPageByKey(active.key);
+            if (page && page.component) {
+                page.element = createContentWrapper(page.component);
+                forceUpdate();
+            }
+        }
+    };
 
     const activeKey = active?.key ? active.key : '';
     const tabItem = naviList.map(data => {
@@ -65,12 +76,11 @@ export const TabBar: FC = () => {
                     <Button className='home-tabbar__extra-button' icon={<ReloadOutlined />} type='text' onClick={onReloadTab} />
                 </Tooltip>
             </Space>
-            <div className='home-tabbar__extra-toolbar'>
-                <Button className='home-tabbar__extra-toolbar-user' icon={<UserOutlined />} type='text' onClick={onUserClick} />
-            </div>
+            <ToolBar />
         </div>
     );
 
+    // console.log('render tabbar');
     return (
         <div className='home-tabbar'>
             <Tabs

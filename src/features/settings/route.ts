@@ -1,4 +1,5 @@
 import { MobRoute } from '@/common/routes';
+import { createContentWrapper } from '@/features/home/ContentWrapper';
 import { Settings } from './Settings';
 
 const route: MobRoute[] = [
@@ -12,7 +13,8 @@ const route: MobRoute[] = [
                 key: 'menu/settings/basic',
                 path: 'settings/basic',
                 name: 'menu.settings.basic',
-                element: <Settings />,
+                element: createContentWrapper(Settings),
+                component: Settings,
             },
         ],
     },

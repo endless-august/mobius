@@ -1,0 +1,9 @@
+.home-toolbar {
+    display: flex;
+    flex: auto;
+    flex-direction: row-reverse;
+
+    &__user {
+        color: gray;
+    }
+}

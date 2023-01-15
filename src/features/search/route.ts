@@ -1,4 +1,5 @@
 import { MobRoute } from '@/common/routes';
+import { createContentWrapper } from '@/features/home/ContentWrapper';
 import { Search } from './Search';
 
 const route: MobRoute[] = [
@@ -7,7 +8,8 @@ const route: MobRoute[] = [
         path: 'search',
         name: 'menu.search',
         icon: 'search',
-        element: <Search />,
+        element: createContentWrapper(Search),
+        component: Search,
     },
 ];
 export default route;

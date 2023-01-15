@@ -61,6 +61,7 @@ export const SiderBar: FC = () => {
             : menuItem(data);
     };
 
+    // console.log('render sider');
     return (
         <div className='home-sider'>
             <div className={classnames('home-sider__title', { 'title-collapsed': collapsed })}>{collapsed ? 'M' : 'Mobius'}</div>

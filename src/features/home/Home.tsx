@@ -21,6 +21,7 @@ export const Home: FC = () => {
         }
     }, [location, dispatch]);
 
+    // console.log('render home');
     return (
         <div className='home-index'>
             <Layout style={{ height: '100vh' }}>

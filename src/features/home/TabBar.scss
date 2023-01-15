@@ -11,16 +11,6 @@ $tabPadding: 15px;
         &-button {
             color: gray;
         }
-
-        &-toolbar {
-            display: flex;
-            flex: auto;
-            flex-direction: row-reverse;
-
-            &-user {
-                color: gray;
-            }
-        }
     }
 
     .ant-tabs {

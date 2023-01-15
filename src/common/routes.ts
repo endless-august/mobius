@@ -3,6 +3,7 @@ import { App } from '@/features/common/App';
 import { PageNotFound } from '@/features/common/PageNotFound';
 import homeRoute from '@/features/home/route';
 import loginRoute from '@/features/login/route';
+import { createElement, FC } from 'react';
 
 export declare type MobRoute = RouteObject & {
     key: string; // unique key
@@ -12,14 +13,16 @@ export declare type MobRoute = RouteObject & {
     submenus?: MobRoute[]; // only directory has submenus
     hidden?: boolean; // whether it is hidden
     parent?: MobRoute; // parent route
+    component?: FC;
 };
 
 const routes: MobRoute[] = [
     {
         key: 'root',
         path: '/',
-        element: <App />,
-        errorElement: <PageNotFound />,
+        element: createElement(App),
+        component: App,
+        errorElement: createElement(PageNotFound),
         children: [loginRoute, homeRoute],
     },
 ];

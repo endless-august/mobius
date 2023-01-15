@@ -46,9 +46,14 @@ export const naviSlice = createSlice({
             if (!page) return;
             if (state.active && state.active.key === page.key) return;
 
-            state.active = pageToItem(page);
-            const item = find(state.list, o => o.key === page.key);
-            if (!item) state.list.push(state.active);
+            const item = pageToItem(page);
+            const exists = find(state.list, o => o.key === page.key);
+            if (!exists) {
+                state.list.push(item);
+                state.active = item;
+            } else {
+                state.active = exists;
+            }
             saveNavi(state);
         },
         closeTab: state => {
