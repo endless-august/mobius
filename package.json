@@ -14,6 +14,7 @@
         "@fortawesome/free-regular-svg-icons": "^6.2.1",
         "@fortawesome/free-solid-svg-icons": "^6.2.1",
         "@fortawesome/react-fontawesome": "^0.2.0",
+        "@koa/router": "^12.0.0",
         "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
         "@reduxjs/toolkit": "^1.9.1",
         "@svgr/webpack": "^5.5.0",
@@ -21,11 +22,9 @@
         "@testing-library/react": "^13.0.0",
         "@testing-library/user-event": "^13.2.1",
         "@types/jest": "^27.0.1",
-        "@types/lodash": "^4.14.191",
         "@types/node": "^16.7.13",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
-        "@types/uuid": "^9.0.0",
         "antd": "^5.1.4",
         "babel-jest": "^27.4.2",
         "babel-loader": "^8.2.3",
@@ -44,14 +43,18 @@
         "eslint-config-react-app": "^7.0.1",
         "eslint-webpack-plugin": "^3.1.1",
         "file-loader": "^6.2.0",
-        "fs-extra": "^10.0.0",
+        "fs-extra": "^11.1.0",
         "html-webpack-plugin": "^5.5.0",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^27.4.3",
         "jest-resolve": "^27.4.2",
         "jest-watch-typeahead": "^1.0.0",
+        "koa": "^2.14.1",
+        "koa-body": "^6.0.1",
         "lodash": "^4.17.21",
+        "log4js": "^6.7.1",
         "mini-css-extract-plugin": "^2.4.5",
+        "minimist": "^1.2.7",
         "postcss": "^8.4.4",
         "postcss-flexbugs-fixes": "^5.0.2",
         "postcss-loader": "^6.2.1",
@@ -84,10 +87,20 @@
         "webpack-manifest-plugin": "^4.0.2",
         "workbox-webpack-plugin": "^6.4.1"
     },
+    "devDependencies": {
+        "@types/fs-extra": "^11.0.1",
+        "@types/koa": "^2.13.5",
+        "@types/koa__router": "^12.0.0",
+        "@types/lodash": "^4.14.191",
+        "@types/minimist": "^1.2.2",
+        "@types/uuid": "^9.0.0",
+        "tsx": "^3.12.2"
+    },
     "scripts": {
-        "start": "PORT=9140 node scripts/start.js",
-        "build": "GENERATE_SOURCEMAP=false node scripts/build.js",
-        "test": "node scripts/test.js"
+        "api:dev": "ESBK_TSCONFIG_PATH=./tsconfig_api.json tsx watch api/api.ts",
+        "web:start": "PORT=9140 node scripts/start.js",
+        "web:build": "GENERATE_SOURCEMAP=false node scripts/build.js",
+        "web:test": "node scripts/test.js"
     },
     "eslintConfig": {
         "extends": [
