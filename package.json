@@ -94,10 +94,12 @@
         "@types/lodash": "^4.14.191",
         "@types/minimist": "^1.2.2",
         "@types/uuid": "^9.0.0",
+        "esbuild": "^0.17.3",
         "tsx": "^3.12.2"
     },
     "scripts": {
         "api:dev": "ESBK_TSCONFIG_PATH=./tsconfig_api.json tsx watch api/api.ts",
+        "api:build": "node scripts/build_api.js",
         "web:start": "PORT=9140 node scripts/start.js",
         "web:build": "GENERATE_SOURCEMAP=false node scripts/build.js",
         "web:test": "node scripts/test.js"
