@@ -1,0 +1,100 @@
+{
+    "name": "mobius-web",
+    "version": "0.0.1",
+    "description": "frontend of mobius",
+    "author": "JayJayZJU <jayjayzju@gmail.com>",
+    "license": "AGPL-3.0",
+    "private": true,
+    "scripts": {
+        "start": "PORT=9140 node scripts/start.js",
+        "build": "GENERATE_SOURCEMAP=false node scripts/build.js"
+    },
+    "dependencies": {
+        "@ant-design/icons": "^5.0.0",
+        "@fortawesome/fontawesome-svg-core": "^6.2.1",
+        "@fortawesome/free-solid-svg-icons": "^6.2.1",
+        "@fortawesome/react-fontawesome": "^0.2.0",
+        "@reduxjs/toolkit": "^1.9.1",
+        "antd": "^5.1.4",
+        "classnames": "^2.3.2",
+        "lodash": "^4.17.21",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-redux": "^8.0.5",
+        "react-router": "^6.6.1",
+        "react-router-dom": "^6.6.1",
+        "redux": "^4.2.0",
+        "uuid": "^9.0.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.16.0",
+        "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
+        "@svgr/webpack": "^5.5.0",
+        "@types/fs-extra": "^11.0.1",
+        "@types/lodash": "^4.14.191",
+        "@types/node": "^18.11.18",
+        "@types/react": "^18.0.0",
+        "@types/react-dom": "^18.0.0",
+        "@types/uuid": "^9.0.0",
+        "babel-loader": "^8.2.3",
+        "babel-plugin-named-asset-import": "^0.3.8",
+        "babel-preset-react-app": "^10.0.1",
+        "bfj": "^7.0.2",
+        "browserslist": "^4.18.1",
+        "case-sensitive-paths-webpack-plugin": "^2.4.0",
+        "css-loader": "^6.5.1",
+        "css-minimizer-webpack-plugin": "^3.2.0",
+        "dotenv": "^10.0.0",
+        "dotenv-expand": "^5.1.0",
+        "eslint": "^8.3.0",
+        "eslint-config-react-app": "^7.0.1",
+        "eslint-webpack-plugin": "^3.1.1",
+        "file-loader": "^6.2.0",
+        "fs-extra": "^11.1.0",
+        "html-webpack-plugin": "^5.5.0",
+        "mini-css-extract-plugin": "^2.4.5",
+        "postcss": "^8.4.4",
+        "postcss-flexbugs-fixes": "^5.0.2",
+        "postcss-loader": "^6.2.1",
+        "postcss-normalize": "^10.0.1",
+        "postcss-preset-env": "^7.0.1",
+        "react-dev-utils": "^12.0.1",
+        "react-refresh": "^0.11.0",
+        "resolve": "^1.20.0",
+        "resolve-url-loader": "^4.0.0",
+        "sass": "^1.57.1",
+        "sass-loader": "^12.3.0",
+        "semver": "^7.3.5",
+        "source-map-loader": "^3.0.0",
+        "style-loader": "^3.3.1",
+        "tailwindcss": "^3.0.2",
+        "terser-webpack-plugin": "^5.2.5",
+        "typescript": "^4.9.4",
+        "webpack": "^5.64.4",
+        "webpack-dev-server": "^4.6.0",
+        "webpack-manifest-plugin": "^4.0.2",
+        "workbox-webpack-plugin": "^6.4.1"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "babel": {
+        "presets": [
+            "react-app"
+        ]
+    }
+}

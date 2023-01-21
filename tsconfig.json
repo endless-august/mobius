@@ -1,7 +1,5 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "lib": ["dom", "dom.iterable", "esnext"],
         "allowJs": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
@@ -14,11 +12,14 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
-        "jsx": "react-jsx",
-        "baseUrl": "./",
+        "removeComments": true,
+        "noImplicitAny": false,
+
         "paths": {
-            "@/*": ["src/*"]
+            "@/api/*": ["../../apps/mobius-api/src/*"],
+            "@/web/*": ["../../apps/mobius-web/src/*"],
+            "@/core/*": ["../../apps/mobius-core/src/*"],
+            "@/utils/*": ["../../apps/mobius-utils/src/*"]
         }
-    },
-    "include": ["src"]
+    }
 }

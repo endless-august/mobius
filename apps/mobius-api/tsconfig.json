@@ -1,0 +1,9 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "lib": ["esnext"],
+        "baseUrl": "./"
+    },
+    "include": ["./src"]
+    // "references": [{ "path": "../../packages/mobius-core/tsconfig.json" }]
+}
