@@ -1,0 +1,4 @@
+{
+    "extends": ["../../.eslintrc.json", "node", "typescript"],
+    "parserOptions": { "project": ["./tsconfig.json"] }
+}
