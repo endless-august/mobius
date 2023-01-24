@@ -8,16 +8,16 @@
     "private": true,
     "scripts": {
         "dev": "turbo dev",
+        "lint": "turbo lint",
         "build": "turbo build",
         "api:dev": "turbo dev --filter='mobius-api'",
+        "api:lint": "turbo lint --filter='mobius-api'",
         "api:build": "turbo build --filter='mobius-api'",
         "web:dev": "turbo dev --filter='mobius-web'",
+        "web:lint": "turbo lint --filter='mobius-web'",
         "web:build": "turbo build --filter='mobius-web'"
     },
     "devDependencies": {
-        "@changesets/cli": "^2.26.0",
-        "@typescript-eslint/eslint-plugin": "^5.48.2",
-        "@typescript-eslint/parser": "^5.48.2",
-        "eslint": "^8.3.0"
+        "@changesets/cli": "^2.26.0"
     }
 }

@@ -7,6 +7,7 @@
     "private": true,
     "scripts": {
         "dev": "tsx watch --clear-screen=false src/index.ts",
+        "lint": "eslint src",
         "build": "node scripts/build.js"
     },
     "dependencies": {
@@ -16,6 +17,7 @@
         "lodash": "^4.17.21",
         "log4js": "^6.7.1",
         "minimist": "^1.2.7",
+        "moment": "^2.29.4",
         "uuid": "^9.0.0"
     },
     "devDependencies": {
@@ -29,8 +31,6 @@
         "@typescript-eslint/parser": "^5.48.2",
         "esbuild": "^0.17.3",
         "eslint": "^8.32.0",
-        "eslint-config-node": "^4.1.0",
-        "eslint-config-typescript": "^3.0.0",
         "tsx": "^3.12.2",
         "typescript": "^4.9.4"
     }

@@ -11,5 +11,8 @@
                 "allowNumber": false
             }
         ]
-    }
+        // "import/prefer-default-export": "off",
+        // "class-methods-use-this": "off"
+    },
+    "parserOptions": { "project": ["./tsconfig.json", "./apps/*/tsconfig.json"] }
 }
