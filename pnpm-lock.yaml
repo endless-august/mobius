@@ -11,6 +11,7 @@ importers:
   apps/mobius-api:
     specifiers:
       '@koa/router': ^12.0.0
+      '@microsoft/tsdoc': ^0.14.2
       '@types/koa': ^2.13.5
       '@types/koa__router': ^12.0.0
       '@types/lodash': ^4.14.191
@@ -21,6 +22,7 @@ importers:
       '@typescript-eslint/parser': ^5.48.2
       esbuild: ^0.17.3
       eslint: ^8.32.0
+      eslint-plugin-tsdoc: ^0.2.17
       koa: ^2.14.1
       koa-body: ^6.0.1
       lodash: ^4.17.21
@@ -40,6 +42,7 @@ importers:
       moment: 2.29.4
       uuid: 9.0.0
     devDependencies:
+      '@microsoft/tsdoc': 0.14.2
       '@types/koa': 2.13.5
       '@types/koa__router': 12.0.0
       '@types/lodash': 4.14.191
@@ -50,6 +53,7 @@ importers:
       '@typescript-eslint/parser': 5.48.2_7uibuqfxkfaozanbtbziikiqje
       esbuild: 0.17.3
       eslint: 8.32.0
+      eslint-plugin-tsdoc: 0.2.17
       tsx: 3.12.2
       typescript: 4.9.4
 
@@ -2568,6 +2572,19 @@ packages:
       fs-extra: 8.1.0
       globby: 11.1.0
       read-yaml-file: 1.1.0
+    dev: true
+
+  /@microsoft/tsdoc-config/0.16.2:
+    resolution: {integrity: sha512-OGiIzzoBLgWWR0UdRJX98oYO+XKGf7tiK4Zk6tQ/E4IJqGCe7dvkTvgDZV5cFJUzLGDOjeAXrnZoA6QkVySuxw==}
+    dependencies:
+      '@microsoft/tsdoc': 0.14.2
+      ajv: 6.12.6
+      jju: 1.4.0
+      resolve: 1.19.0
+    dev: true
+
+  /@microsoft/tsdoc/0.14.2:
+    resolution: {integrity: sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==}
     dev: true
 
   /@nicolo-ribaudo/eslint-scope-5-internals/5.1.1-v1:
@@ -5570,6 +5587,13 @@ packages:
       - typescript
     dev: true
 
+  /eslint-plugin-tsdoc/0.2.17:
+    resolution: {integrity: sha512-xRmVi7Zx44lOBuYqG8vzTXuL6IdGOeF9nHX17bjJ8+VE6fsxpdGem0/SBTmAwgYMKYB1WBkqRJVQ+n8GK041pA==}
+    dependencies:
+      '@microsoft/tsdoc': 0.14.2
+      '@microsoft/tsdoc-config': 0.16.2
+    dev: true
+
   /eslint-scope/5.1.1:
     resolution: {integrity: sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==}
     engines: {node: '>=8.0.0'}
@@ -6801,6 +6825,10 @@ packages:
       '@types/node': 18.11.18
       merge-stream: 2.0.0
       supports-color: 8.1.1
+    dev: true
+
+  /jju/1.4.0:
+    resolution: {integrity: sha512-8wb9Yw966OSxApiCt0K3yNJL8pnNeIv+OEq2YMidz4FKP6nonSRoOXc80iXY4JaN2FC11B9qsNmDsm+ZOfMROA==}
     dev: true
 
   /joycon/3.1.1:
@@ -9504,6 +9532,13 @@ packages:
       loader-utils: 2.0.4
       postcss: 7.0.39
       source-map: 0.6.1
+    dev: true
+
+  /resolve/1.19.0:
+    resolution: {integrity: sha512-rArEXAgsBG4UgRGcynxWIWKFvh/XZCcS8UJdHhwy91zwAvCZIbcs+vAbflgBnNjYMs/i/i+/Ux6IZhML1yPvxg==}
+    dependencies:
+      is-core-module: 2.11.0
+      path-parse: 1.0.7
     dev: true
 
   /resolve/1.22.1:
