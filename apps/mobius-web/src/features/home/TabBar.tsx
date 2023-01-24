@@ -3,6 +3,7 @@ import { Tabs, TabsProps, Button, Space, Tooltip, ButtonProps } from 'antd';
 import { getPageByKey } from '@/web/features/menu/menus';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { CloseOutlined, ReloadOutlined } from '@ant-design/icons';
 import { useAppSelector, useAppDispatch } from '@/web/common/hooks/useRedux';
 import { useForceUpdate } from '@/web/common/hooks/useForceUpdate';
@@ -51,7 +52,7 @@ export const TabBar: FC = () => {
             key,
             label: (
                 <>
-                    {icon ? <FontAwesomeIcon className='anticon' icon={icon as any} /> : ''}
+                    {icon ? <FontAwesomeIcon className='anticon' icon={icon as IconProp} /> : ''}
                     {__(name)}
                 </>
             ),

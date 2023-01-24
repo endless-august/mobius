@@ -1,6 +1,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { chain, filter, isString, size, map, cloneDeep } from 'lodash';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const solidIcons = require('@fortawesome/free-solid-svg-icons');
 const definitions = chain(solidIcons)
     .filter(x => x.icon)

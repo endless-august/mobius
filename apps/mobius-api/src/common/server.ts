@@ -3,13 +3,13 @@ import Router from '@koa/router';
 import { koaBody } from 'koa-body';
 import { getLogger, Logger } from 'log4js';
 import { v4 as uuidv4 } from 'uuid';
-import { forEach } from 'lodash';
+import { forEach, isUndefined } from 'lodash';
 import { getIp } from './utils';
 
 export declare type RequestCtx = Koa.Context & {
     traceId: string;
     logger: Logger;
-    rawdata: any;
+    rawdata: object;
     jsondata: object;
 };
 
@@ -37,8 +37,8 @@ export class Server {
 
         // trace id & logger
         app.use(async (ctx: RequestCtx, next) => {
-            ctx.traceId = ctx.get('X-Request-Id') || uuidv4();
-            if (!ctx.logger) ctx.logger = getLogger(ctx.traceId);
+            ctx.traceId = ctx.get('X-Request-Id') ?? uuidv4();
+            if (isUndefined(ctx.logger)) ctx.logger = getLogger(ctx.traceId);
 
             // logger context
             const { url, req, path, traceId, logger } = ctx;
@@ -82,7 +82,7 @@ export class Server {
 
     registMiddlewares = (): void => {
         const { app } = this;
-        app.use(async (ctx: RequestCtx, next) => {
+        app.use(async (ctx: RequestCtx) => {
             const { logger, method, path } = ctx;
             logger.warn('Unsupport request: ', method, path);
         });

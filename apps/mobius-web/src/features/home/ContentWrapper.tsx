@@ -1,4 +1,4 @@
-import { createElement, FC, ReactNode } from 'react';
+import React, { createElement, FC, ReactNode } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 interface ContentProps {

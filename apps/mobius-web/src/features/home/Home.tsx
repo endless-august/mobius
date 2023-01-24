@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Layout } from 'antd';
 import { TabBar } from './TabBar';
 import { SiderBar } from './SiderBar';

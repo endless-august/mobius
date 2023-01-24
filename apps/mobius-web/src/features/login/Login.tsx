@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { __ } from '@/web/common/i18n';
 
 const LoginForm: FC = () => {
-    const onFinish = (values: any) => {};
+    // const onFinish = (values: any) => console.log(values);
     // const handleSubmit = e => {
     //     e.preventDefault();
     //     this.props.form.validateFields((err, values) => {
@@ -30,7 +30,10 @@ const LoginForm: FC = () => {
     // };
 
     return (
-        <Form className='login-form' onFinish={onFinish}>
+        <Form
+            className='login-form'
+            // onFinish={onFinish}
+        >
             <Form.Item
                 name='name'
                 rules={[

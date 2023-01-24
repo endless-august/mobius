@@ -1,4 +1,4 @@
-import { find, findIndex, last } from 'lodash';
+import { find, findIndex, isUndefined, last } from 'lodash';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '@/web/common/store';
 import { getSessionValue, setSessionValue } from '@/web/common/utils';
@@ -43,7 +43,7 @@ export const naviSlice = createSlice({
     reducers: {
         navigateTo: (state, action: PayloadAction<string>) => {
             const page = getPageByKey(action.payload);
-            if (!page) return;
+            if (isUndefined(page)) return;
             if (state.active && state.active.key === page.key) return;
 
             const item = pageToItem(page);
@@ -75,7 +75,7 @@ export const selectNaviList = (state: RootState) => state.navi.list;
 export const selectCollapsed = (state: RootState) => state.navi.collapsed;
 export const selectNextTab = (state: RootState) => {
     const { list, active } = state.navi;
-    if (!active) return last(list);
+    if (isUndefined(active)) return last(list);
     const index = findIndex(list, o => o.key === active.key);
     if (index < 0) return last(list);
     if (index === list.length - 1) {

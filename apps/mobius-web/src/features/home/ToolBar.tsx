@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { Button, ButtonProps } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 

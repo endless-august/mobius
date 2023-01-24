@@ -2,11 +2,12 @@ import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import classnames from 'classnames';
-import { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { MobRoute } from '@/web/common/routes';
 import { size, isUndefined } from 'lodash';
 import '@/web/common/fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { menus, getPageByKey } from '@/web/features/menu/menus';
 import { __ } from '@/web/common/i18n';
 import { useNavigate } from 'react-router-dom';
@@ -43,7 +44,7 @@ export const SiderBar: FC = () => {
         return {
             key,
             label: __(name),
-            icon: icon ? <FontAwesomeIcon className='anticon' icon={icon as any} style={iconStyle} /> : '',
+            icon: icon ? <FontAwesomeIcon className='anticon' icon={icon as IconProp} style={iconStyle} /> : '',
         };
     };
 
@@ -53,10 +54,10 @@ export const SiderBar: FC = () => {
             ? {
                   key,
                   label: __(name),
-                  icon: icon ? <FontAwesomeIcon className='anticon' icon={icon as any} style={iconStyle} /> : '',
+                  icon: icon ? <FontAwesomeIcon className='anticon' icon={icon as IconProp} style={iconStyle} /> : '',
                   children: submenus && submenus.map(x => menuDir(x)),
-                  onTitleMouseEnter: ({ key, domEvent }) => {},
-                  onTitleMouseLeave: ({ key, domEvent }) => {},
+                  //   onTitleMouseEnter: ({ key, domEvent }) => {},
+                  //   onTitleMouseLeave: ({ key, domEvent }) => {},
               }
             : menuItem(data);
     };

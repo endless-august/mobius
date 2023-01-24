@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { startPagePath } from '@/web/features/start/route';
 
