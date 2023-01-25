@@ -3,6 +3,7 @@
 /.pnp
 .pnp.js
 .turbo
+tmp
 
 # production
 build
